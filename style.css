@@ -1,0 +1,86 @@
+div {
+	color: white;
+	padding: 5px;
+}
+
+#logo {
+	background-image: url("logo.png");
+	background-size: contain;
+	background-color: transparent;
+	width: 80px;
+	float: left;
+	height: 80px;
+	
+}
+#signup {
+	background-color: #41acdc;
+	height: 40px;
+	width: 100px;
+	float: right;
+	text-align: center;
+}
+#header {
+
+	text-align: center;
+	height: 100px;
+	
+}
+#pics {
+	background-color: black;
+	text-align: center;
+	height: 200px;
+	
+}
+#descrip {
+	text-align: center;
+	height: 100px;
+	
+}
+#nav {
+	border: solid black;
+	border-width: 1px;
+	background-color: #41acdc;
+	text-align:center;
+	height: 250px;
+	width: 31%;
+	float: left;
+	margin-right: 1px;
+	
+}
+
+#content {
+	
+	border: solid black;
+	border-width: 1px;
+	background-color: black;
+	float: left;
+	text-align: center;
+	height: 250px;
+	width: 34%;
+	margin-right: 1px;
+	
+	
+}
+#content2 {
+	border: solid black;
+	border-width: 1px;
+	background-color: #41acdc;
+	text-align: center;
+	height: 250px;
+	width: 31%;
+	float: right;
+}
+#filler {
+	height: 80px;
+	clear:both;
+}
+#footer {
+	background-color: black;
+	clear: both;
+	text-align: center;
+}
+ul {
+	list-style-type: none;
+	line-height: 25px;
+	padding: 0px;
+}
