@@ -1,0 +1,87 @@
+html,body, #wrapper {
+    margin: 0;
+    border: 0;
+    box-sizing: border-box;
+    padding: 0;
+}
+
+body {
+    background-image: url('../images/background.jpg');
+}
+
+#wrapper {
+    display: flex;
+    align-items: center;
+    padding-top: 5px;
+    flex-direction: column;
+}
+
+.header {
+    width: 90%;
+    height: 18%;
+    margin:1%;
+    margin-bottom: 5px;
+}
+
+.header img {
+    height: 100%;
+    width: 20%;
+    margin: 2px;
+}
+
+.collapsable {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.slideshow {
+    background-color: rgba(0,0,0,0.6);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 50%;
+    width: 80%;
+}
+
+.slideshow .photos{
+    height: 100vh;
+    max-width: 70vh;
+
+}
+
+.dots li {
+    list-style-type: none;
+    display: inline;
+}
+
+a {
+    text-decoration: none;
+    font-weight: bold;
+    color:#f0f0f0;
+}
+
+@keyframes logo {
+    from {top: 0; right: 0;}
+    to {top: 0; left: 0}
+
+}
+
+@media only screen and (max-width: 600px ) {
+    .header{
+    text-align: center;
+        margin-bottom: 10px;
+        margin-top: 5px;
+    }
+
+    .header img {
+    width: 30%;
+    }
+
+    .collapsable {
+        display: none;
+    }
+}
