@@ -1,0 +1,104 @@
+div {
+	color: white;
+	padding: 5px;
+	font: Helvetica;
+}
+
+#logo {
+	background-image: url("resources/images/logo.png");
+	background-size: contain;
+	background-color: transparent;
+	width: 80px;
+	float: left;
+	height: 80px;
+	
+}
+#signup {
+	background-color: #41acdc;
+	height: 40px;
+	width: 100px;
+	float: right;
+	text-align: center;
+}
+#header {
+
+	text-align: left;
+	height: 100px;
+	
+}
+#pics {
+	background-color: grey;
+	text-align: center;
+	height: 200px;
+	
+}
+#descrip {
+	text-align: center;
+	height: 100px;
+	
+}
+#events {
+	border: solid black;
+	border-width: 1px;
+	background-color: #41acdc;
+	text-align:center;
+	height: 300px;
+	width: 31%;
+	float: left;
+	margin-right: 1px;
+	
+	
+}
+
+#content {
+	
+	border: solid black;
+	border-width: 1px;
+	background-color: black;
+	float: left;
+	text-align: center;
+	height: 300px;
+	width: 41%;
+	margin-left: 2px;
+	
+	
+}
+#links {
+	background-color: transparent;
+	text-align: center;
+	height: 250px;
+	width: 18%;
+	float: right;
+}
+#filler {
+	height: 80px;
+	clear:both;
+}
+#featurepic {
+	height: 500px;
+	width: 40%;
+	background-color: grey;
+	float: left;
+}
+#feature {
+	height: 500px;
+	width: 58%;
+	background-color: #41acdc;
+	float: left;
+}
+#officers {
+	float: left;
+	
+	
+	
+}
+#footer {
+	background-color: black;
+	clear: both;
+	text-align: center;
+}
+ul {
+	list-style-type: none;
+	line-height: 25px;
+	padding: 0px;
+}
