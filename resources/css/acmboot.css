@@ -34,6 +34,7 @@ body {
 }
 
 
+
 /* CUSTOMIZE THE CAROUSEL
 -------------------------------------------------- */
 
@@ -50,6 +51,7 @@ body {
 /* Declare heights because of positioning of img element */
 .carousel .item {
   height: 500px;
+  min-width: 100%;
   background-color: #777;
 }
 .carousel-inner > .item > img {
@@ -127,8 +129,12 @@ body {
   }
 }
 
+
 @media (min-width: 992px) {
   .featurette-heading {
     margin-top: 120px;
+  }
+  .container {
+	  width: 940px;
   }
 }
