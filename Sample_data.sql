@@ -1,0 +1,32 @@
+INSERT
+INTO
+  `users`(
+    `FirstName`,
+    `LastName`,
+    `User_ID`,
+    `Email`,
+    `Position`,
+    `status`
+  )
+VALUES(
+  'Zachary',
+  'Ostrowski',
+  'kanku13',
+  'w0641076@selu.edu',
+  'Member',
+  'Active'
+),(
+  'Yashmin',
+  'Sainju',
+  'Yashmin',
+  'yashminsainju@selu.edu',
+  'Officer',
+  'Active'
+),(
+  'Kuo_Pao',
+  'Yang',
+  'Dr Pao',
+  'kyang@selu.edu',
+  'Admin',
+  'Active'
+);
