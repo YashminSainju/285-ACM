@@ -15,4 +15,3 @@ include ("inc/firstSection.php")
 ?>
 
 <?php include("inc/lastSection.php");?>
-<?php include("inc/footer.php"); ?>
