@@ -1,0 +1,46 @@
+
+<!DOCTYPE html>
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.8/angular-ui-router.min.js"></script>
+    
+
+<body ng-app="myApp">
+
+<p><a ui-sref="#">Main</a></p>
+
+
+<p><a href="#green">Green</a></p>
+<p><a href="#blue">Blue</a></p>
+
+<div ng-view></div> <!--where the route should populate-->
+
+<script>
+
+var app=angular.module("myApp", ['ngRoute']);
+app.config(['$routeProvider',function($routeProvider) {
+	$routeProvider
+	.when("/", {
+		templateUrl : "main.htm"
+	})
+	
+	.when("/green", {
+		templateUrl : "green.htm"
+		controller: "greenCtrl"
+	})
+	.when("/blue", {
+		templateUrl : "blue.htm"
+		controller: "blueCtrl"
+	});
+	}]);
+
+app.controller("greenCtrl", function($scope) {
+	$scope.msg="my friends's fav color";
+});
+app.controller("blueCtrl", function($scope) {
+	$scope.msg="my fav color";
+});
+	
+</script>
+	
+</html>
