@@ -1,20 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"  ng-app="routerApp">
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ACM</title>
-	 <!-- Bootstrap core CSS -->
-    <link href="../../dist/css/bootstrap.min.css" rel="stylesheet">
+	 <!-- Bootstrap core CSS 
+    <link href="../../dist/css/bootstrap.min.css" rel="stylesheet">-->
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" />
+     
 	
 	 <!-- JS (load angular, ui-router, and our custom js file) -->
     <script src="http://code.angularjs.org/1.2.13/angular.js"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.8/angular-ui-router.min.js"></script>
     <script src="script.js"></script>
 
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug 
+    <link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">-->
 	
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     
@@ -26,7 +28,7 @@
 	
 </head>
 
-<body ng-app="routerApp">
+<body>
     <div>
         <nav class="navbar navbar-inverse navigation-clean-button">
             <div class="container">
@@ -39,8 +41,10 @@
                         <li ><a ui-sref="about">About </a></li>
 						<li ><a ui-sref="calendar">Calendar </a></li>
                         <li ><a ui-sref="slugo">SLUGO </a></li>
+						<li ><a ui-sref="jobs">Job Offers </a></li>
+						
                     </ul>
-                    <p class="navbar-text navbar-right actions"><a class="navbar-link login" ui-sref="#">Log In</a>
+                    <p class="navbar-text navbar-right actions"><a class="navbar-link login" ui-sref="#"><span class="glyphicon glyphicon-log-in"></span> Log In</a>
                         <button class="btn btn-success btn-lg" type="button">Sign Up</button>
                     </p>
                 </div>

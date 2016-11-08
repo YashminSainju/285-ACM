@@ -10,7 +10,7 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
 		})
 		.state('about', {
 			url: '/about',
-			templateUrl:'https://www.acm.org/'
+			templateUrl:'https://www.acm.org'
 		})
 		
 		.state('calendar', {
@@ -21,5 +21,9 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
 		.state('slugo', {
 			url: '/slugo',
 			templateUrl:'pages/slugo.html'
+		})
+		.state('jobs', {
+			url: '/jobs',
+			templateUrl:'pages/jobs.html'
 		});
 });
