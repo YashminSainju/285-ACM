@@ -1,7 +1,7 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: Wesley
+ * User: Yashmin
  * Date: 11/5/2016
  * Time: 6:38 PM
  */
@@ -19,3 +19,15 @@ try{
     echo "Could not connect to the database.";
     exit;
 }
+
+try{
+    $active = $db->query("SELECT `FirstName`, `LastName` FROM `users` WHERE 'status' = 'active'; ");
+    $inactive = $db->query("SELECT `FirstName`, `LastName` FROM `users` WHERE 'status' = 'Inactive';");
+}catch (Exception $e){
+    echo "Data could not be retrieved from the database";
+    exit;
+}
+
+$amembers = $active->fetch(PDO::FETCH_ASSOC);
+$imembers = $inactive->fetch(PDO::FETCH_ASSOC);
+var_dump($imembers);
