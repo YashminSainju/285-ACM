@@ -8,7 +8,7 @@
 include ("config.php");
 try{
     $db= new PDO(
-        "mysql:host=". DB_HOST .";dbname=". DB_NAME,
+        "mysql:host=". DB_HOST .";port=3307;dbname=". DB_NAME,
         DB_USER,
         DB_PASS
     );
@@ -23,6 +23,7 @@ try{
 try{
     $active = $db->query("SELECT `FirstName`, `LastName` FROM `users` WHERE 'status' = 'active'; ");
     $inactive = $db->query("SELECT `FirstName`, `LastName` FROM `users` WHERE 'status' = 'Inactive';");
+    $all = $db->query("SELECT `FirstName`, `LastName` FROM `users`");
 }catch (Exception $e){
     echo "Data could not be retrieved from the database";
     exit;
@@ -30,4 +31,4 @@ try{
 
 $amembers = $active->fetch(PDO::FETCH_ASSOC);
 $imembers = $inactive->fetch(PDO::FETCH_ASSOC);
-var_dump($imembers);
+$members = $all->fetchAll(PDO::FETCH_ASSOC);
