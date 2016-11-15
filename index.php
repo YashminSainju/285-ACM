@@ -1,16 +1,7 @@
 <?php
 include "../inc/database.php";
 
-try{
-    $active = $db->query("SELECT `FirstName`, `LastName`, FROM `users` WHERE STATUS = 'active'; ");
-    $inactive = $db->query("SELECT `FirstName`, `LastName` FROM `users` WHERE STATUS = 'Inactive';");
-}catch (Exception $e){
-    echo "Data could not be retrieved from the database";
-    exit;
-}
 
-$amembers = $active->fetch(PDO::FETCH_ASSOC);
-$imembers = $inactive->fetch(PDO::FETCH_ASSOC);
 
 ?>
 <!DOCTYPE html>
@@ -66,9 +57,7 @@ $imembers = $inactive->fetch(PDO::FETCH_ASSOC);
                                 <li role="presentation"><a href="#">Member 2</a></li>
                                 <li role="presentation"><a href="#">Member 3</a></li>-->
                                 <?php
-                                foreach($amembers as $member){
-                                    echo "<li role='presentation'>".$member['FirstName']." ".$member['LastName'];
-                                }
+                                
                                 ?>
                             </ul>
                         </div>
