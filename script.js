@@ -8,10 +8,10 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
 			url: '/home',
 			templateUrl:'pages/home.html'
 		})
-		.state('about', {
-			url: '/about',
-			templateUrl:'https://www.acm.org'
-		})
+		//.state('about', {
+		//	url: '/about',
+		//	templateUrl:'https://www.acm.org'
+		//})
 		
 		.state('calendar', {
 			url: '/calendar',
