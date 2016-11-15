@@ -25,5 +25,9 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
 		.state('jobs', {
 			url: '/jobs',
 			templateUrl:'pages/jobs.html'
+		})
+		.state('admin', {
+			url: '/admin',
+			templateUrl:'admin.php'
 		});
 });
