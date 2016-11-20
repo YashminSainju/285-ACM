@@ -1,0 +1,8 @@
+CREATE TABLE `test`.`Jobs` 
+  ( `Serial` INT NOT NULL AUTO_INCREMENT ,
+  `JobTitle` TINYTEXT NOT NULL , 
+  `JobDescription` TINYTEXT NOT NULL , 
+  `JobContact` VARCHAR(50) NOT NULL , 
+  `PostedBy` VARCHAR(50) NOT NULL , 
+  `Time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP , PRIMARY KEY (`Serial`)) 
+  ENGINE = InnoDB;
