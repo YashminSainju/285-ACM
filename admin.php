@@ -1,5 +1,24 @@
 <?php
-include "inc/database.php";
+include "inc/functions.php";
+$jobTitle = $jobDescription = "";
+$jobTitleErr = $jobDescriptionErr = "";
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (empty($_POST["Job Title"])) {
+        $nameErr = "Job Title is required";
+    } else {
+        $jobTitle = test_input($_POST["Job Title"]);
+        // check if name only contains letters and whitespace
+        if (!preg_match("/^[a-zA-Z ]*$/", $jobTitle)) {
+            $jobTitleErr = "Only letters and white space allowed";
+        }
+    }
+
+    if (empty($_POST["Job Description"])) {
+        $jobDescriptionErr = "Job Description is required";
+    } else {
+        $jobDescription = test_input($_POST["Job Description"]);
+    }
+}
 
 
 
