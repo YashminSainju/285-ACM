@@ -19,16 +19,3 @@ try{
     echo "Could not connect to the database.";
     exit;
 }
-
-try{
-    $active = $db->query("SELECT `FirstName`, `LastName` FROM `users` WHERE 'status' = 'active'; ");
-    $inactive = $db->query("SELECT `FirstName`, `LastName` FROM `users` WHERE 'status' = 'Inactive';");
-    $all = $db->query("SELECT `FirstName`, `LastName` FROM `users`");
-}catch (Exception $e){
-    echo "Data could not be retrieved from the database";
-    exit;
-}
-
-$amembers = $active->fetch(PDO::FETCH_ASSOC);
-$imembers = $inactive->fetch(PDO::FETCH_ASSOC);
-$members = $all->fetchAll(PDO::FETCH_ASSOC);
