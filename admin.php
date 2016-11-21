@@ -3,26 +3,27 @@ include "inc/functions.php";
 $jobTitle = $jobDescription = "";
 $jobTitleErr = $jobDescriptionErr = "";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (empty($_POST["Job Title"])) {
-        $nameErr = "Job Title is required";
-    } else {
-        $jobTitle = test_input($_POST["Job Title"]);
-        // check if name only contains letters and whitespace
-        if (!preg_match("/^[a-zA-Z ]*$/", $jobTitle)) {
-            $jobTitleErr = "Only letters and white space allowed";
+    if(isset($_POST["jobSubmit"])){
+        if (empty($_POST["JobTitle"])) {
+            $nameErr = "Job Title is required";
+        } else {
+            $jobTitle = trim(filter_input(INPUT_POST,"JobTitle",FILTER_SANITIZE_STRING));
+            // check if name only contains letters and whitespace
+            if (!preg_match("/^[a-zA-Z ]*$/", $jobTitle)) {
+                $jobTitleErr = "Only letters and white space allowed";
+            }
+        }
+
+        if (empty($_POST["JobDescription"])) {
+            $jobDescriptionErr = "Job Description is required";
+        } else {
+            $jobDescription = trim(filter_input(INPUT_POST,"JobDescription",FILTER_SANITIZE_SPECIAL_CHARS));
         }
     }
-
-    if (empty($_POST["Job Description"])) {
-        $jobDescriptionErr = "Job Description is required";
-    } else {
-        $jobDescription = test_input($_POST["Job Description"]);
     }
-}
-
-
 
 ?>
+
 <!DOCTYPE html>
 <html>
 
@@ -84,17 +85,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="col-md-4 col-sm-6 item">
                     <div class="box"><i class="glyphicon glyphicon-list-alt icon"></i>
                         <h3 class="name">Job Postings</h3>
-                        <form method="post">
+                        <form method="post" action = "">
                             <div class="form-group has-success">
-                                <input class="form-control" type="text" name="Job Title" placeholder="Job Title">
+                                <label for ="JobTitle">Job Title</label>
+                                <input class="form-control" type="text" name="JobTitle" value = "<?php echo $jobTitle;?>">
                             </div>
                             <div class="form-group has-error"></div>
                             <div class="form-group">
-                                <textarea class="form-control input-lg" rows="14" name="Job Description" placeholder="Job Description"></textarea>
+                                <label for ="JobDescription">Job Description</label>
+                                <textarea class="form-control input-lg" rows="14" name="JobDescription"><?php /*if(isset($jobDescription)){echo htmlspecialchars($_POST["Job Description"]);}*/?></textarea>
                             </div>
                             <div class="form-group">
-                                <button class="btn btn-primary" type="submit">Add </button>
+                                <input class="btn btn-primary" type="submit" name = "jobSubmit" value = "Add"> </input>
                             </div>
+                            <?php
+
+                            echo $jobDescription;
+                            echo $jobTitle;
+                            /*if ($jobTitle != NULL AND $jobDescription != NULL){
+                                addNewJob($jobTitle, $jobDescription);
+                            }*/
+                            ?>
                         </form>
                     </div>
                 </div>
