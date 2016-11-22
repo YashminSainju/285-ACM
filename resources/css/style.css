@@ -84,3 +84,18 @@ ul {
 	line-height: 25px;
 	padding: 0px;
 }
+table, th, td {
+	border: 1px solid black;
+    
+}
+
+th, td {
+	padding: 15px;
+}
+
+th {
+	text-align: left;
+}
+table{
+	border-spacing: 5px;
+}
