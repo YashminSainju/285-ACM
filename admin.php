@@ -1,29 +1,7 @@
 <?php
 include "inc/functions.php";
-$jobTitle = $jobDescription = "";
-$jobTitleErr = $jobDescriptionErr = "";
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if(isset($_POST["jobSubmit"])){
-        if (empty($_POST["JobTitle"])) {
-            $nameErr = "Job Title is required";
-        } else {
-            $jobTitle = trim(filter_input(INPUT_POST,"JobTitle",FILTER_SANITIZE_STRING));
-            // check if name only contains letters and whitespace
-            if (!preg_match("/^[a-zA-Z ]*$/", $jobTitle)) {
-                $jobTitleErr = "Only letters and white space allowed";
-            }
-        }
-
-        if (empty($_POST["JobDescription"])) {
-            $jobDescriptionErr = "Job Description is required";
-        } else {
-            $jobDescription = trim(filter_input(INPUT_POST,"JobDescription",FILTER_SANITIZE_SPECIAL_CHARS));
-        }
-    }
-    }
 
 ?>
-
 <!DOCTYPE html>
 <html>
 
@@ -32,8 +10,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ACM Admin Page2</title>
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
     <link rel="stylesheet" href="assets/css/Contact-Form-Clean.css">
     <link rel="stylesheet" href="assets/css/Features-Boxed.css">
+    <link rel="stylesheet" href="assets/css/MUSA_panel-table.css">
+    <link rel="stylesheet" href="assets/css/MUSA_panel-table1.css">
     <link rel="stylesheet" href="assets/css/Navigation-Clean1.css">
     <link rel="stylesheet" href="assets/css/Sidebar-Menu.css">
     <link rel="stylesheet" href="assets/css/Sidebar-Menu1.css">
@@ -60,84 +41,173 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
         </nav>
     </div>
-    <div class="features-boxed">
-        <div class="container">
-            <div class="intro">
-                <h2 class="text-center">Dashboard </h2>
-                <p class="text-center">Control Panel</p>
-            </div>
-            <div class="row features">
-                <div class="col-md-4 col-sm-6 item">
-                    <div class="box"><i class="glyphicon glyphicon-user icon"></i>
-                        <h3 class="name">Members </h3>
-                        <div class="dropdown">
-                            <button class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false" type="button">Dropdown <span class="caret"></span></button>
-                            <ul class="dropdown-menu" role="menu">
-                                <?php
-                                foreach ($members as $member){
-                                    echo "<li role = 'presentation'>".$member['FirstName'].$member['LastName']."</li>";
-                                }
-                                ?>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-6 item">
-                    <div class="box"><i class="glyphicon glyphicon-list-alt icon"></i>
-                        <h3 class="name">Job Postings</h3>
-                        <form method="post" action = "">
-                            <div class="form-group has-success">
-                                <label for ="JobTitle">Job Title</label>
-                                <input class="form-control" type="text" name="JobTitle" value = "<?php echo $jobTitle;?>">
-                            </div>
-                            <div class="form-group has-error"></div>
-                            <div class="form-group">
-                                <label for ="JobDescription">Job Description</label>
-                                <textarea class="form-control input-lg" rows="14" name="JobDescription"><?php /*if(isset($jobDescription)){echo htmlspecialchars($_POST["Job Description"]);}*/?></textarea>
-                            </div>
-                            <div class="form-group">
-                                <input class="btn btn-primary" type="submit" name = "jobSubmit" value = "Add"> </input>
-                            </div>
-                            <?php
-
-                            echo $jobDescription;
-                            echo $jobTitle;
-                            /*if ($jobTitle != NULL AND $jobDescription != NULL){
-                                addNewJob($jobTitle, $jobDescription);
-                            }*/
-                            ?>
-                        </form>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-6 item">
-                    <div class="box"><i class="glyphicon glyphicon-flag icon"></i>
-                        <h3 class="name">Report Issues</h3>
-                        <form method="post">
-                            <div class="form-group has-success"></div>
-                            <div class="form-group has-error"></div>
-                            <div class="form-group"></div>
-                            <div class="form-group"></div>
-                        </form>
-                        <form method="post">
-                            <div class="form-group">
-                                <input class="form-control" type="text" name="name" placeholder="Name">
-                            </div>
-                            <div class="form-group">
-                                <input class="form-control" type="email" name="email" placeholder="Email">
-                            </div>
-                            <div class="form-group">
-                                <textarea class="form-control" rows="14" name="message" placeholder="Message"></textarea>
-                            </div>
-                            <div class="form-group">
-                                <button class="btn btn-primary" type="submit">Send </button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <div class="features-boxed"></div>
     <div></div>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel='stylesheet' type='text/css'>
+
+<div class="container">
+    <div class="row">
+    
+        <div class="col-md-10 col-md-offset-1">
+
+            <div class="panel panel-default panel-table">
+              <div class="panel-heading">
+                <div class="row">
+                  <div class="col col-xs-6">
+                    <h3 class="panel-title">Members</h3>
+                  </div>
+                  <div class="col col-xs-6 text-right">
+                    <button type="button" class="btn btn-sm btn-primary btn-create">Create New</button>
+                  </div>
+                </div>
+              </div>
+              <div class="panel-body">
+                <table class="table table-striped table-bordered table-list">
+                  <thead>
+                    <tr>
+                        <th><em class="fa fa-cog"></em></th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Payment</th>
+                        <th>Status</th>
+                    </tr> 
+                  </thead>
+                  <tbody>
+                          <tr>
+                            <td align="center">
+                              <a class="btn btn-default"><em class="fa fa-pencil"></em></a>
+                              <a class="btn btn-danger"><em class="fa fa-trash"></em></a>
+                            </td>
+                              <td>John Doe</td>             
+                            <td>johndoe@example.com</td>
+                            <td>Year</td>
+                              <td>Senior</td>
+                                                        </tr>
+                        </tbody>
+                    <tbody>
+                          <tr>
+                            <td align="center">
+                              <a class="btn btn-default"><em class="fa fa-pencil"></em></a>
+                              <a class="btn btn-danger"><em class="fa fa-trash"></em></a>
+                            </td>
+                              <td>Jane Doe</td>             
+                            <td>janedoe@example.com</td>
+                            <td>N/A</td>
+                              <td>Sophmore</td>
+                                                        </tr>
+                        </tbody>
+                    <tbody>
+                          <tr>
+                            <td align="center">
+                              <a class="btn btn-default"><em class="fa fa-pencil"></em></a>
+                              <a class="btn btn-danger"><em class="fa fa-trash"></em></a>
+                            </td>
+                              <td>Jean Doe</td>             
+                            <td>jeandoe@example.com</td>
+                            <td>Semester</td>
+                              <td>Junior</td>
+                                                        </tr>
+                        </tbody>
+                </table>
+            
+              </div>
+              <div class="panel-footer">
+                <div class="row">
+                  <div class="col col-xs-4">Page 1 of 5
+                  </div>
+                  <div class="col col-xs-8">
+                    <ul class="pagination hidden-xs pull-right">
+                      <li><a href="#">1</a></li>
+                      <li><a href="#">2</a></li>
+                      <li><a href="#">3</a></li>
+                      <li><a href="#">4</a></li>
+                      <li><a href="#">5</a></li>
+                    </ul>
+                    <ul class="pagination visible-xs pull-right">
+                        <li><a href="#">«</a></li>
+                        <li><a href="#">»</a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+</div></div></div>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel='stylesheet' type='text/css'>
+
+<div class="container">
+    <div class="row">
+    
+        <div class="col-md-10 col-md-offset-1">
+
+            <div class="panel panel-default panel-table">
+              <div class="panel-heading">
+                <div class="row">
+                  <div class="col col-xs-6">
+                    <h3 class="panel-title">Jobs Offers</h3>
+                  </div>
+                  <div class="col col-xs-6 text-right">
+                    <button type="button" class="btn btn-sm btn-primary btn-create">Create New</button>
+                  </div>
+                </div>
+              </div>
+              <div class="panel-body">
+                <table class="table table-striped table-bordered table-list">
+                  <thead>
+                    <tr>
+                        <th><em class="fa fa-cog"></em></th>
+                        <th>Title</th>
+                        <th>Description</th>
+                        <th>Contact Info</th>
+                    </tr> 
+                  </thead>
+                  <tbody>
+                          <tr>
+                            <td align="center">
+                              <a class="btn btn-default"><em class="fa fa-pencil"></em></a>
+                              <a class="btn btn-danger"><em class="fa fa-trash"></em></a>
+                            </td>
+                            <td>Help Desk Technician</td>
+                            <td>Blue Cross Blue Shield is looking for ...</td>
+                            <td>bcbs@example.com</td>
+                          </tr>
+                        </tbody>
+                    <tbody>
+                          <tr>
+                            <td align="center">
+                              <a class="btn btn-default"><em class="fa fa-pencil"></em></a>
+                              <a class="btn btn-danger"><em class="fa fa-trash"></em></a>
+                            </td>
+                            <td>Intern</td>
+                            <td>Google ...</td>
+                            <td>googlejobs@example.com</td>
+                          </tr>
+                        </tbody>
+                </table>
+            
+              </div>
+              <div class="panel-footer">
+                <div class="row">
+                  <div class="col col-xs-4">Page 1 of 5
+                  </div>
+                  <div class="col col-xs-8">
+                    <ul class="pagination hidden-xs pull-right">
+                      <li><a href="#">1</a></li>
+                      <li><a href="#">2</a></li>
+                      <li><a href="#">3</a></li>
+                      <li><a href="#">4</a></li>
+                      <li><a href="#">5</a></li>
+                    </ul>
+                    <ul class="pagination visible-xs pull-right">
+                        <li><a href="#">«</a></li>
+                        <li><a href="#">»</a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+</div></div></div>
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="assets/js/Sidebar-Menu.js"></script>
