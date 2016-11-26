@@ -91,6 +91,8 @@ footer {
 	
 	height: 60px;
 	background-color: black;
+	color: white;
+	padding-top: 5px;
 }
 ul {
 	list-style-type: none;
