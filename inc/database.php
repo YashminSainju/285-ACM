@@ -8,7 +8,7 @@
 include ("config.php");
 try{
     $db= new PDO(
-        "mysql:host=". DB_HOST .";port=3307;dbname=". DB_NAME,
+        "mysql:host=". DB_HOST .";port=3306;dbname=". DB_NAME,
         DB_USER,
         DB_PASS
     );

@@ -10,6 +10,6 @@ define ("BASE_URL","/");
 define("ROOT_PATH", $_SERVER["DOCUMENT_ROOT"]."/");
 
 define("DB_HOST","localhost");
-define("DB_NAME","test");
-define("DB_USER","admin");
-define("DB_PASS","@wesdxc");
+define("DB_NAME","acmsite");
+define("DB_USER","root");
+define("DB_PASS","");

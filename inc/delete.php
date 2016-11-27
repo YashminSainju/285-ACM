@@ -1,9 +1,9 @@
 <?php 
 // include database and object file 
-include_once 'inc/database.php'; 
-include_once 'inc/members/users.php'; 
+include_once 'database.php';
+include_once 'members/users.php';
  
-// prepare product object
+// prepare members object
 $members = new users($db);
  
 // get product id
@@ -13,7 +13,7 @@ $data = json_decode(file_get_contents("php://input"));
 $members->id = $data->id;
  
 // delete the product
-if($product->delete()){
+if($members->delete()){
     echo "Product was deleted.";
 }
  

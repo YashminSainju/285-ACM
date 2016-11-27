@@ -1,7 +1,7 @@
 <?php 
 // include database and object file 
-include_once 'inc/database.php'; 
-include_once 'inc/members/users.php'; 
+include_once 'database.php';
+include_once 'members/users.php';
  
 
 // prepare members object
