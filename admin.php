@@ -79,7 +79,7 @@ $query1 = $db->query("SELECT id,title,description,contact FROM jobs");
 <div></div>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel='stylesheet' type='text/css'>
 
-<div class="container" ng-app="myApp" ng-controller="usersCtrl">
+<div class="container">
     <div class="row">
 
         <div class="col-md-10 col-md-offset-1">
@@ -96,6 +96,7 @@ $query1 = $db->query("SELECT id,title,description,contact FROM jobs");
                     </div>
                 </div>
                 <div class="panel-body">
+
                     <table class="table table-striped table-bordered table-list">
                         <thead>
                         <tr>
@@ -107,21 +108,26 @@ $query1 = $db->query("SELECT id,title,description,contact FROM jobs");
                             <th>Status</th>
                         </tr>
                         </thead>
-                        <tbody ng-init="getAll()">
-                        <tr ng-repeat="d in names">
-                            <td>
-                                <a class="btn btn-default"><em class="fa fa-pencil"></em></a>
-                                <a class="btn btn-danger"><em class="fa fa-trash"></em></a>
-                            </td>
-                            <td>{{d.FirstName }}</td>
-                            <td>{{d.LastName }}</td>
-                            <td>{{d.Email}}</td>
-                            <td>{{d.Payment}}</td>
-                            <td>{{d.class}}</td>
-                        </tr>
-                        </tbody>
+                        <?php
+                        while($userquery2 = $userquery->fetch(PDO::FETCH_ASSOC)){
+                            echo "
+                                        <tbody>
+                                        <tr>
+                                            <td align=\"center\">
+                                                <a href = 'inc/members/useredit.php?id=".$userquery2['ID']."' class=\"btn btn-default\"><em class=\"fa fa-pencil\"></em></a>
+                                                <a href = 'inc/members/userdelete.php?id=".$userquery2['ID']."' class=\"btn btn-danger\"><em class=\"fa fa-trash\"></em></a>
+                                            </td>
+                                            <td>".$userquery2['FirstName']."</td>
+                                            <td>".$userquery2['LastName']."</td>
+                                            <td>".$userquery2['Email']."</td>
+                                            <td>".$userquery2['Payment']."</td>
+                                            <td>".$userquery2['class']."</td>
+                                        </tr>
+                                        </tbody>
+                                    ";
+                        }
+                        ?>
                     </table>
-
                 </div>
             </div>
         </div>
@@ -278,17 +284,6 @@ $query1 = $db->query("SELECT id,title,description,contact FROM jobs");
 <script src="assets/js/Sidebar-Menu.js"></script>
 <script src="resources/js/angular.min.js"></script>
 <script type="text/javascript" src="inc/js/scripts.js"></script>
-<script>
-    var app = angular.module('myApp', []);
-    app.controller('usersCtrl', function($scope, $http) {
-        // read products
-        $scope.getAll = function(){
-            $http.get("inc/read.php").success(function(response){
-                $scope.names = response.records;
-            });
-        }
-    });
-</script>
 
 </body>
 
