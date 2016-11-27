@@ -1,5 +1,15 @@
 <?php
-include "inc/functions.php";
+/**
+ * Created by PhpStorm.
+ * User: Yashmin
+ * Date: 11/27/2016
+ * Time: 10:43 AM
+ */
+include('inc/database.php');
+$query1 = $db->query("SELECT id,title,description,contact FROM jobs");
+?>
+<?php
+//include "inc/functions.php";
 ?>
 <!DOCTYPE html>
 <html>
@@ -131,7 +141,7 @@ include "inc/functions.php";
                             <h3 class="panel-title">Jobs Offers</h3>
                         </div>
                         <div class="col col-xs-6 text-right">
-                            <button type="button" class="btn btn-sm btn-primary btn-create">Create New</button>
+                            <input type="button" onclick="location.href='inc/jobs/add.php';" value="Create New"  class="btn btn-sm btn-primary btn-create" data-toggle="modal" />
                         </div>
                     </div>
                 </div>
@@ -145,28 +155,23 @@ include "inc/functions.php";
                             <th>Contact Info</th>
                         </tr>
                         </thead>
-                        <tbody>
-                        <tr>
-                            <td align="center">
-                                <a class="btn btn-default"><em class="fa fa-pencil"></em></a>
-                                <a class="btn btn-danger"><em class="fa fa-trash"></em></a>
-                            </td>
-                            <td>Help Desk Technician</td>
-                            <td>Blue Cross Blue Shield is looking for ...</td>
-                            <td>bcbs@example.com</td>
-                        </tr>
-                        </tbody>
-                        <tbody>
-                        <tr>
-                            <td align="center">
-                                <a class="btn btn-default"><em class="fa fa-pencil"></em></a>
-                                <a class="btn btn-danger"><em class="fa fa-trash"></em></a>
-                            </td>
-                            <td>Intern</td>
-                            <td>Google ...</td>
-                            <td>googlejobs@example.com</td>
-                        </tr>
-                        </tbody>
+                        <?php
+                        while($query2 = $query1->fetch(PDO::FETCH_ASSOC)){
+                            echo "
+                                        <tbody>
+                                        <tr>
+                                            <td align=\"center\">
+                                                <a href = 'inc/jobs/edit.php?id=".$query2['id']."'class=\"btn btn-default\"><em class=\"fa fa-pencil\"></em></a>
+                                                <a href = 'inc/jobs/delete.php?id=".$query2['id']."'class=\"btn btn-danger\"><em class=\"fa fa-trash\"></em></a>
+                                            </td>
+                                            <td>".$query2['title']."</td>
+                                            <td>".$query2['description']."</td>
+                                            <td>".$query2['contact']."</td>
+                                        </tr>
+                                        </tbody>
+                                    ";
+                        }
+                        ?>
                     </table>
 
                 </div>
