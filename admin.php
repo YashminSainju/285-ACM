@@ -8,7 +8,8 @@
 include('inc/database.php');
 include('inc/functions.php');
 sec_session_start();
-if(login_check($db) == true) { 
+if(login_check($db) == true) {
+
 ?>
 
 <!DOCTYPE html>
@@ -82,7 +83,7 @@ if(login_check($db) == true) {
 <div></div>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel='stylesheet' type='text/css'>
 
-<div class="container">
+<div class="container" ng-app="myApp" ng-controller="usersCtrl">
     <div class="row">
 
         <div class="col-md-10 col-md-offset-1">
@@ -99,7 +100,6 @@ if(login_check($db) == true) {
                     </div>
                 </div>
                 <div class="panel-body">
-
                     <table class="table table-striped table-bordered table-list">
                         <thead>
                         <tr>
@@ -112,6 +112,7 @@ if(login_check($db) == true) {
                         </tr>
                         </thead>
                         <?php
+                        $userquery = $db->query("SELECT FirstName,LastName,Email,Class,ID FROM users");
                         while($userquery2 = $userquery->fetch(PDO::FETCH_ASSOC)){
                             echo "
                                         <tbody>
@@ -131,6 +132,7 @@ if(login_check($db) == true) {
                         }
                         ?>
                     </table>
+
                 </div>
             </div>
         </div>
@@ -316,11 +318,22 @@ if(login_check($db) == true) {
 <script src="assets/js/Sidebar-Menu.js"></script>
 <script src="resources/js/angular.min.js"></script>
 <script type="text/javascript" src="inc/js/scripts.js"></script>
+<script>
+    var app = angular.module('myApp', []);
+    app.controller('usersCtrl', function($scope, $http) {
+        // read products
+        $scope.getAll = function(){
+            $http.get("inc/read.php").success(function(response){
+                $scope.names = response.records;
+            });
+        }
+    });
+</script>
 
 </body>
+
+</html>
 <?php
 } else {
     echo 'You are not authorized to access this page, please login.';
 }?>
-
-</html>
