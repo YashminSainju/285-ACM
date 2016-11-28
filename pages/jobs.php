@@ -28,7 +28,7 @@ try {
 					<tr>
 						<td>" . $query2['title'] . "</td>
                         <td>" . $query2['description'] . "</td>
-                        <td>" . $query2['contact'] . "</td>
+                        <td><a href = 'mailto:" . $query2['contact'] . "'>". $query2['contact'] ."</a></td>
 					</tr>";
 	}
 	}catch(Exception $e){
