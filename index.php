@@ -9,6 +9,7 @@
     } else {
         $logged = 'out';
     }
+
 ?>
 
 <!DOCTYPE html>
@@ -49,6 +50,7 @@
             echo '<p class="error">Error Logging In!</p>';
         }
 ?>
+
     <div>
         <nav class="navbar navbar-inverse navigation-clean-button">
             <div class="container">
@@ -56,6 +58,27 @@
                     <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
                 </div>
                 <div class="collapse navbar-collapse" id="navcol-1">
+                    <?php
+                    if (login_check($db) == true) {
+                        echo '<li><a>Welcome ' . htmlentities($_SESSION['username']) . '</a></li>
+                                <li><a href="inc/logout.php">Log out</a></p>';
+                    }else{
+                        echo "
+                                <form action='inc/process_login.php' method='post' name='login_form' class = 'form-inline'>
+                                <div class = 'form-group'>
+                                    <label for ='email'>Email </label>
+                                    <input type='text' name='email' style='color: #000; font-size: 15px;' placeholder='Email' class='form-control' />
+                                </div>
+                                <div class = 'form-group'><label for='password'>Password </label>
+                                    <input type='password' name='password' id='password' style='color: #000; font-size: 15px;' placeholder='Password' class='form-control'/>
+                                </div>
+                                <input type='button' class='btn btn-default' value='Login' onclick='formhash(this.form, this.form.password);' />
+                                <button class = 'btn btn-default'> <a href='register.php'>register</a></button>
+
+
+                            </form>";
+                    }
+                    ?>
                     <ul class="nav navbar-nav">
                         <li ><a ui-sref="home">Home </a></li>
                         <li ><a href="https://www.acm.org">About </a></li>
@@ -63,20 +86,6 @@
                         <li ><a ui-sref="slugo">SLUGO </a></li>
 						<li ><a ui-sref="jobs">Job Offers </a></li>
 						<li ><a ui-sref="admin">Administrators </a></li>
-						 <?php
-                            if (login_check($db) == true) {
-                                echo '<li><a>Welcome ' . htmlentities($_SESSION['username']) . '</a></li>
-                                <li><a href="inc/logout.php">Log out</a></p>';
-                            }else{
-                                echo "<li>
-                                <form action='inc/process_login.php' method='post' name='login_form'>
-                                Email: <input type='text' name='email' style='color: #000; font-size: 15px;' />
-                                Password: <input type='password' name='password' id='password' style='color: #000; font-size: 15px;/>
-                                <p class='navbar-text navbar-right actions'><input type='button' class='glyphicon glyphicon-log-in btn btn-success' value='Login' onclick='formhash(this.form, this.form.password);' /></p>
-                                <p> <a href='register.php'>register</a></p>
-                            </form>";
-                            }
-                            ?></li>
                     </ul>
                     <!--<p class="navbar-text navbar-right actions"><a class="navbar-link login" ui-sref="#"><span class="glyphicon glyphicon-log-in"></span> Log In</a>-->
 
