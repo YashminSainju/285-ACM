@@ -60,7 +60,7 @@ function sec_session_start() {
      */
     session_name($session_name);
 
-    $secure = true;
+    $secure = false;
     // This stops JavaScript being able to access the session id.
     $httponly = true;
     // Forces sessions to only use cookies.
@@ -97,18 +97,19 @@ function login($email, $password, $db) {
             //$stmt->bind_result($user_id, $username, $db_password);
             $stmt->fetch();
 
-            if ($stmt->num_rows == 1) {
+            if ($stmt->rowCount() == 1) {
                 // If the user exists we check if the account is locked
                 // from too many login attempts
 
-                if (checkbrute($user_id, $db) == true) {
+               /*if (checkbrute($user_id, $db) == true) {
                     // Account is locked
                     // Send an email to user saying their account is locked
                     return false;
-                } else {
+                } else {*/
                     // Check if the password in the database matches
                     // the password the user submitted. We are using
                     // the password_verify function to avoid timing attacks.
+                    //echo "brute force says no";
                     if (password_verify($password, $db_password)) {
                         // Password is correct!
                         // Get the user-agent string of the user.
@@ -117,7 +118,7 @@ function login($email, $password, $db) {
                         $user_id = preg_replace("/[^0-9]+/", "", $user_id);
                         $_SESSION['user_id'] = $user_id;
                         // XSS protection as we might print this value
-                        $username = preg_replace("/[^a-zA-Z0-9_\-]+/",
+                        $username = preg_replace("/[^a-zA-Z0-9_-]+/",
                             "",
                             $username);
                         $_SESSION['username'] = $username;
@@ -128,19 +129,22 @@ function login($email, $password, $db) {
                     } else {
                         // Password is not correct
                         // We record this attempt in the database
+                        echo "password couldnt be verified.";
                         $now = time();
                         $db->query("INSERT INTO login_attempts(user_id, time)
                                     VALUES ('$user_id', '$now')");
                         return false;
                     }
-                }    // Execute the prepared query.
-            }
+               // }    // Execute the prepared query.
+            }else{echo "prepared query didnt work";}
         }else{
+            echo "email is wrong";
             return false;
         }
 
     } else {
             // No user exists.
+        echo "couldn't prepare query";
             return false;
     }
 }
@@ -150,7 +154,7 @@ function checkbrute($user_id, $db) {
     $now = time();
 
     // All login attempts are counted from the past 2 hours.
-    $valid_attempts = $now - (2 * 60 * 60);
+    $valid_attempts = $now - (2*60* 60);
 
     if ($stmt = $db->prepare("SELECT time
                              FROM login_attempts
@@ -191,10 +195,9 @@ function login_check($db) {
             $stmt->execute(array($user_id));   // Execute the prepared query.
             $row = $stmt->fetch();
 
-            if ($stmt->num_rows == 1) {
+            if ($stmt->rowCount() == 1) {
                 // If the user exists get variables from result.
                 $password = $row[0];
-                $stmt->fetch();
                 $login_check = hash('sha512', $password . $user_browser);
 
 
@@ -203,18 +206,22 @@ function login_check($db) {
                     return true;
                 } else {
                     // Not logged in
+                    echo "wrong here!";
                     return false;
                 }
             } else {
                 // Not logged in
+                echo "more than one user password?";
                 return false;
             }
         } else {
             // Not logged in
+            echo "password error?";
             return false;
         }
     } else {
         // Not logged in
+        echo "something is wrong with login function";
         return false;
     }
 }
