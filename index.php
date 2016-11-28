@@ -63,24 +63,23 @@
                         <li ><a ui-sref="slugo">SLUGO </a></li>
 						<li ><a ui-sref="jobs">Job Offers </a></li>
 						<li ><a ui-sref="admin">Administrators </a></li>
-						<li> <form action="inc/process_login.php" method="post" name="login_form">
-                                Email: <input type="text" name="email" style="color: #fff; font-size: 15px;" />
-                                Password: <input type="password" name="password" id="password"/>
-                                <p class="navbar-text navbar-right actions"><input type="button" class="glyphicon glyphicon-log-in btn btn-success" value="Login" onclick="formhash(this.form, this.form.password);" /></p>
-
-                            </form></li>
+						<li> <?php
+                            if (login_check($db) == true) {
+                                echo '<p> logged ' . $logged . ' as ' . htmlentities($_SESSION['username']) . '.</p>
+                                <p>Log out <a href="inc/logout.php">Log out</a>.</p>';
+                            }else{
+                                echo "
+                                <form action='inc/process_login.php' method='post' name='login_form'>
+                                Email: <input type='text' name='email' style='color: #000; font-size: 15px;' />
+                                Password: <input type='password' name='password' id='password' style='color: #000; font-size: 15px;/>
+                                <p class='navbar-text navbar-right actions'><input type='button' class='glyphicon glyphicon-log-in btn btn-success' value='Login' onclick='formhash(this.form, this.form.password);' /></p>
+                                <p> <a href='register.php'>register</a></p>
+                            </form>";
+                            }
+                            ?></li>
                     </ul>
                     <!--<p class="navbar-text navbar-right actions"><a class="navbar-link login" ui-sref="#"><span class="glyphicon glyphicon-log-in"></span> Log In</a>-->
 
-<?php
-    if (login_check($db) == true) {
-    echo '<p>Currently logged ' . $logged . ' as ' . htmlentities($_SESSION['username']) . '.</p>
-                    <p>Do you want to change user? <a href="inc/logout.php">Log out</a>.</p>';
-                    } else {
-    echo '</br><p>Currently logged ' . $logged . '.</p>';
-    echo "<p>If you don't have a login, please <a href='register.php'>register</a></p>";
-}
-?>
                     </p>
                 </div>
             </div>
