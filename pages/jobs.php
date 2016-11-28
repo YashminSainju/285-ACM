@@ -1,4 +1,15 @@
-
+<?php
+/**
+ * Created by PhpStorm.
+ * User: Yashmin
+ * Date: 11/27/2016
+ * Time: 10:43 AM
+ */
+include('../inc/database.php');
+include('../inc/functions.php');
+sec_session_start();
+if(login_check($db) == true) {
+?>
 
 	
 	<h1><span class="text-muted">Job Offers: Get Connected!</span></h1>
@@ -59,4 +70,7 @@
 	
 	</tr>
 	</table>
-	
+	<?php
+} else {
+	echo 'You are not authorized to access this page, please login.';
+}?>
