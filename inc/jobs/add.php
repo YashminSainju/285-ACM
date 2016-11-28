@@ -30,7 +30,7 @@ include('../database.php');
             Contact info: <input type = "text" name="contact"><br>
             <br>
             <input type="submit" name="submit">
-        </form>/
+        </form>
     </fieldset>
     </body>
 </html>
