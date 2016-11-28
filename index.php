@@ -1,3 +1,16 @@
+<?php
+    include_once 'inc/database.php';
+    include_once 'inc/functions.php';
+
+    sec_session_start();
+
+    if (login_check($db) == true) {
+        $logged = 'in';
+    } else {
+        $logged = 'out';
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en"  ng-app="routerApp">
 
@@ -25,10 +38,17 @@
     <link rel="stylesheet" href="resources/css/style.css">
     <link rel="stylesheet" href="resources/css/Team-Clean.css">
     <link rel="stylesheet" href="resources/css/Team-Grid.css">
+    <script type="text/JavaScript" src="inc/js/sha512.js"></script>
+    <script type="text/JavaScript" src="inc/js/forms.js"></script>
 	
 </head>
 
 <body>
+<?php
+        if (isset($_GET['error'])) {
+            echo '<p class="error">Error Logging In!</p>';
+        }
+?>
     <div>
         <nav class="navbar navbar-inverse navigation-clean-button">
             <div class="container">
@@ -43,10 +63,24 @@
                         <li ><a ui-sref="slugo">SLUGO </a></li>
 						<li ><a ui-sref="jobs">Job Offers </a></li>
 						<li ><a ui-sref="admin">Administrators </a></li>
-						
+						<li> <form action="inc/process_login.php" method="post" name="login_form">
+                                Email: <input type="text" name="email" style="color: #fff; font-size: 15px;" />
+                                Password: <input type="password" name="password" id="password"/>
+                                <p class="navbar-text navbar-right actions"><input type="button" class="glyphicon glyphicon-log-in btn btn-success" value="Login" onclick="formhash(this.form, this.form.password);" /></p>
+
+                            </form></li>
                     </ul>
-                    <p class="navbar-text navbar-right actions"><a class="navbar-link login" ui-sref="#"><span class="glyphicon glyphicon-log-in"></span> Log In</a>
-                        <button class="btn btn-success btn-lg" type="button">Sign Up</button>
+                    <!--<p class="navbar-text navbar-right actions"><a class="navbar-link login" ui-sref="#"><span class="glyphicon glyphicon-log-in"></span> Log In</a>-->
+
+<?php
+    if (login_check($db) == true) {
+    echo '<p>Currently logged ' . $logged . ' as ' . htmlentities($_SESSION['username']) . '.</p>
+                    <p>Do you want to change user? <a href="inc/logout.php">Log out</a>.</p>';
+                    } else {
+    echo '</br><p>Currently logged ' . $logged . '.</p>';
+    echo "<p>If you don't have a login, please <a href='register.php'>register</a></p>";
+}
+?>
                     </p>
                 </div>
             </div>
