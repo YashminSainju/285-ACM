@@ -45,7 +45,7 @@
             color: #fff !important;
         }
         .navbar-nav li a:hover, .navbar-nav li.active a {
-            background-color: rgba(0,0,0,0.5) !important;
+            background-color: rgba(0,0,0,0.3) !important;
         }
 
         .slideanim {visibility:hidden;}
