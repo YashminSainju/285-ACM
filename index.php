@@ -23,6 +23,31 @@
     <link href="../../dist/css/bootstrap.min.css" rel="stylesheet">-->
 	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" />
     <style>
+        body{
+            font-family: Montserrat, sans-serif;
+            font-size: 12px !important;
+            line-height: 1.42857143 !important;
+            letter-spacing: 4px;
+        }
+        .navbar {
+            margin-bottom: 0;
+            background-color: #f4511e;
+            z-index: 9999;
+            border: 0;
+            font-size: 12px !important;
+            line-height: 1.42857143 !important;
+            letter-spacing: 4px;
+            border-radius: 0;
+            font-family: Montserrat, sans-serif;
+            font-weight: bold;
+        }
+        .navbar li a, .navbar .navbar-brand {
+            color: #fff !important;
+        }
+        .navbar-nav li a:hover, .navbar-nav li.active a {
+            background-color: rgba(0,0,0,0.5) !important;
+        }
+
         .slideanim {visibility:hidden;}
         .slide {
             animation-name: slide;
@@ -88,12 +113,21 @@
                     <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
                 </div>
                 <div class="collapse navbar-collapse" id="navcol-1">
-                    <?php
-                    if (login_check($db) == true) {
-                        echo '<li><a>Welcome ' . htmlentities($_SESSION['username']) . '</a></li>
+
+                    <ul class="nav navbar-nav">
+                        <li ><a ui-sref="home">Home </a></li>
+                        <li ><a href="https://www.acm.org">About </a></li>
+						<li ><a ui-sref="calendar">Calendar </a></li>
+                        <li ><a ui-sref="slugo">SLUGO </a></li>
+						<li ><a ui-sref="jobs">Job Offers </a></li>
+						<li ><a ui-sref="admin">Administrators </a></li>
+                        <li>
+                            <?php
+                            if (login_check($db) == true) {
+                                echo '<li><a>Welcome ' . htmlentities($_SESSION['username']) . '</a></li>
                                 <li><a href="inc/logout.php">Log out</a></p>';
-                    }else{
-                        echo "
+                            }else{
+                                echo "
                                 <form action='inc/process_login.php' method='post' name='login_form' class = 'form-inline'>
                                 <div class = 'form-group'>
                                     <label for ='email'>Email </label>
@@ -107,15 +141,9 @@
 
 
                             </form>";
-                    }
-                    ?>
-                    <ul class="nav navbar-nav">
-                        <li ><a ui-sref="home">Home </a></li>
-                        <li ><a href="https://www.acm.org">About </a></li>
-						<li ><a ui-sref="calendar">Calendar </a></li>
-                        <li ><a ui-sref="slugo">SLUGO </a></li>
-						<li ><a ui-sref="jobs">Job Offers </a></li>
-						<li ><a ui-sref="admin">Administrators </a></li>
+                            }
+                            ?>
+                        </li>
                     </ul>
                     <!--<p class="navbar-text navbar-right actions"><a class="navbar-link login" ui-sref="#"><span class="glyphicon glyphicon-log-in"></span> Log In</a>-->
 
