@@ -86,7 +86,7 @@ function login($email, $password, $db) {
         FROM members
        WHERE email = ?
         LIMIT 1")) {
-        if($stmt->execute(array($email))) {
+        if ($stmt->execute(array($email))) {
             $row = $stmt->fetch();
             $user_id = $row[0];
             $username = $row[1];
@@ -101,11 +101,11 @@ function login($email, $password, $db) {
                 // If the user exists we check if the account is locked
                 // from too many login attempts
 
-               /*if (checkbrute($user_id, $db) == true) {
+                if (checkbrute($user_id, $db) == true) {
                     // Account is locked
                     // Send an email to user saying their account is locked
                     return false;
-                } else {*/
+                } else {
                     // Check if the password in the database matches
                     // the password the user submitted. We are using
                     // the password_verify function to avoid timing attacks.
@@ -135,18 +135,19 @@ function login($email, $password, $db) {
                                     VALUES ('$user_id', '$now')");
                         return false;
                     }
-               // }    // Execute the prepared query.
-            }else{echo "prepared query didnt work";}
-        }else{
-            echo "email is wrong";
+                }    // Execute the prepared query.
+            }else{
+                    echo "prepared query didnt work";
+            }
+            } else {
+                echo "email is wrong";
+                return false;
+            }
+        } else {
+            // No user exists.
+            echo "couldn't prepare query";
             return false;
         }
-
-    } else {
-            // No user exists.
-        echo "couldn't prepare query";
-            return false;
-    }
 }
 
 function checkbrute($user_id, $db) {
@@ -221,12 +222,12 @@ function login_check($db) {
         }
     } else {
         // Not logged in
-        echo "something is wrong with login function";
         return false;
     }
 }
 
-function esc_url($url) {
+function esc_url($url)
+{
 
     if ('' == $url) {
         return $url;
@@ -235,7 +236,7 @@ function esc_url($url) {
     $url = preg_replace('|[^a-z0-9-~+_.?#=!&;,/:%@$\|*\'()\\x80-\\xff]|i', '', $url);
 
     $strip = array('%0d', '%0a', '%0D', '%0A');
-    $url = (string) $url;
+    $url = (string)$url;
 
     $count = 1;
     while ($count) {
