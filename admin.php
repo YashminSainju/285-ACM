@@ -112,7 +112,7 @@ if(login_check($db) == true) {
                         </tr>
                         </thead>
                         <?php
-                        $userquery = $db->query("SELECT FirstName,LastName,Email,Class,ID FROM users");
+                        $userquery = $db->query("SELECT FirstName,LastName,Email,Payment,class,ID FROM users");
                         while($userquery2 = $userquery->fetch(PDO::FETCH_ASSOC)){
                             echo "
                                         <tbody>
