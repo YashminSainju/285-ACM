@@ -37,7 +37,7 @@ if (isset($_POST['username'], $_POST['email'], $_POST['p'])) {
 
     // check existing email
     if ($stmt) {
-        $stmt->bind_param('s', $email);
+        $stmt->bindParam('s', $email);
         $stmt->execute();
         $stmt->store_result();
 
@@ -56,7 +56,7 @@ if (isset($_POST['username'], $_POST['email'], $_POST['p'])) {
     $stmt = $db->prepare($prep_stmt);
 
     if ($stmt) {
-        $stmt->bind_param('s', $username);
+        $stmt->bindParam('s', $username);
         $stmt->execute();
         $stmt->store_result();
 
@@ -79,7 +79,7 @@ if (isset($_POST['username'], $_POST['email'], $_POST['p'])) {
 
         // Insert the new user into the database
         if ($insert_stmt = $db->prepare("INSERT INTO members (username, email, password) VALUES (?, ?, ?)")) {
-            $insert_stmt->bind_param('sss', $username, $email, $password);
+            $insert_stmt->bindParam('sss', $username, $email, $password);
             // Execute the prepared query.
             if (! $insert_stmt->execute()) {
                 header('Location: ../error.php?err=Registration failure: INSERT');
