@@ -66,7 +66,7 @@
 						<li> <?php
                             if (login_check($db) == true) {
                                 echo '<p> logged ' . $logged . ' as ' . htmlentities($_SESSION['username']) . '.</p>
-                                <p>Log out <a href="inc/logout.php">Log out</a>.</p>';
+                                <p> <a href="inc/logout.php">Log out</a></p>';
                             }else{
                                 echo "
                                 <form action='inc/process_login.php' method='post' name='login_form'>
@@ -76,7 +76,7 @@
                                 <p> <a href='register.php'>register</a></p>
                             </form>";
                             }
-                            ?></li>
+                            ?></li></li>
                     </ul>
                     <!--<p class="navbar-text navbar-right actions"><a class="navbar-link login" ui-sref="#"><span class="glyphicon glyphicon-log-in"></span> Log In</a>-->
 
