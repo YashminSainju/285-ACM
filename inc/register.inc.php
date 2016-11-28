@@ -37,11 +37,10 @@ if (isset($_POST['username'], $_POST['email'], $_POST['p'])) {
 
     // check existing email
     if ($stmt) {
-        $stmt->bindParam('s', $email);
-        $stmt->execute();
-        $stmt->store_result();
+        $stmt->execute(array($email));
+        $stmt->fetch();
 
-        if ($stmt->num_rows == 1) {
+        if ($stmt->rowCount() == 1) {
             // A user with this email address already exists
             $error_msg .= '<p class="error">A user with this email address already exists.</p>';
             $stmt->close();
@@ -56,11 +55,10 @@ if (isset($_POST['username'], $_POST['email'], $_POST['p'])) {
     $stmt = $db->prepare($prep_stmt);
 
     if ($stmt) {
-        $stmt->bindParam('s', $username);
-        $stmt->execute();
-        $stmt->store_result();
+        $stmt->execute(array($username));
+        $stmt->fetch();
 
-        if ($stmt->num_rows == 1) {
+        if ($stmt->rowCount() == 1) {
             // A user with this username already exists
             $error_msg .= '<p class="error">A user with this username already exists</p>';
             $stmt->close();
@@ -79,9 +77,8 @@ if (isset($_POST['username'], $_POST['email'], $_POST['p'])) {
 
         // Insert the new user into the database
         if ($insert_stmt = $db->prepare("INSERT INTO members (username, email, password) VALUES (?, ?, ?)")) {
-            $insert_stmt->bindParam('sss', $username, $email, $password);
             // Execute the prepared query.
-            if (! $insert_stmt->execute()) {
+            if (! $insert_stmt->execute(array($username, $email, $password))) {
                 header('Location: ../error.php?err=Registration failure: INSERT');
             }
         }
