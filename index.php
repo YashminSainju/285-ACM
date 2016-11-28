@@ -63,12 +63,12 @@
                         <li ><a ui-sref="slugo">SLUGO </a></li>
 						<li ><a ui-sref="jobs">Job Offers </a></li>
 						<li ><a ui-sref="admin">Administrators </a></li>
-						<li> <?php
+						 <?php
                             if (login_check($db) == true) {
-                                echo '<p> logged ' . $logged . ' as ' . htmlentities($_SESSION['username']) . '.</p>
-                                <p> <a href="inc/logout.php">Log out</a></p>';
+                                echo '<li><a>Welcome ' . htmlentities($_SESSION['username']) . '</a></li>
+                                <li><a href="inc/logout.php">Log out</a></p>';
                             }else{
-                                echo "
+                                echo "<li>
                                 <form action='inc/process_login.php' method='post' name='login_form'>
                                 Email: <input type='text' name='email' style='color: #000; font-size: 15px;' />
                                 Password: <input type='password' name='password' id='password' style='color: #000; font-size: 15px;/>
@@ -76,7 +76,7 @@
                                 <p> <a href='register.php'>register</a></p>
                             </form>";
                             }
-                            ?></li></li>
+                            ?></li>
                     </ul>
                     <!--<p class="navbar-text navbar-right actions"><a class="navbar-link login" ui-sref="#"><span class="glyphicon glyphicon-log-in"></span> Log In</a>-->
 
