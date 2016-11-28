@@ -86,12 +86,15 @@ function login($email, $password, $db) {
         FROM members
        WHERE email = ?
         LIMIT 1")) {
-        $stmt->bindParam('s', $email);  // Bind "$email" to parameter.
-        if($stmt->execute()) {
-            $stmt->store_result();
+        if($stmt->execute(array($email))) {
+            $row = $stmt->fetch();
+            $user_id = $row[0];
+            $username = $row[1];
+            $db_password = $row[2];
 
             // get variables from result.
-            $stmt->bind_result($user_id, $username, $db_password);
+
+            //$stmt->bind_result($user_id, $username, $db_password);
             $stmt->fetch();
 
             if ($stmt->num_rows == 1) {
@@ -153,14 +156,13 @@ function checkbrute($user_id, $db) {
                              FROM login_attempts
                              WHERE user_id = ?
                             AND time > '$valid_attempts'")) {
-        $stmt->bindParam('i', $user_id);
 
         // Execute the prepared query.
-        $stmt->execute();
-        $stmt->store_result();
+        $stmt->execute(array($user_id));
+        $stmt->fetch();
 
         // If there have been more than 5 failed logins
-        if ($stmt->num_rows > 5) {
+        if ($stmt->rowCount() > 5) {
             return true;
         } else {
             return false;
@@ -186,13 +188,12 @@ function login_check($db) {
                                       FROM members
                                       WHERE id = ? LIMIT 1")) {
             // Bind "$user_id" to parameter.
-            $stmt->bindParam('i', $user_id);
-            $stmt->execute();   // Execute the prepared query.
-            $stmt->store_result();
+            $stmt->execute(array($user_id));   // Execute the prepared query.
+            $row = $stmt->fetch();
 
             if ($stmt->num_rows == 1) {
                 // If the user exists get variables from result.
-                $stmt->bind_result($password);
+                $password = $row[0];
                 $stmt->fetch();
                 $login_check = hash('sha512', $password . $user_browser);
 
