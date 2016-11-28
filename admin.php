@@ -6,11 +6,11 @@
  * Time: 10:43 AM
  */
 include('inc/database.php');
-$query1 = $db->query("SELECT id,title,description,contact FROM jobs");
+include('inc/functions.php');
+sec_session_start();
+if(login_check($db) == true) { 
 ?>
-<?php
-//include "inc/functions.php";
-?>
+
 <!DOCTYPE html>
 <html>
 
@@ -65,10 +65,13 @@ $query1 = $db->query("SELECT id,title,description,contact FROM jobs");
             </div>
             <div class="collapse navbar-collapse" id="navcol-1">
                 <ul class="nav navbar-nav navbar-right">
-                    <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false" href="#">Hi, Dr. Pao<span class="caret"></span></a>
-                        <ul class="dropdown-menu" role="menu">
-                            <li role="presentation"><a>Sign Out</a></li>
-                        </ul>
+                    <li>
+                            Hi
+                            <?php
+                            if (login_check($db) == true) {
+                                echo htmlentities($_SESSION['username']);
+                            }
+                            ?>
                     </li>
                 </ul>
             </div>
@@ -162,8 +165,10 @@ $query1 = $db->query("SELECT id,title,description,contact FROM jobs");
                         </tr>
                         </thead>
                         <?php
-                        while($query2 = $query1->fetch(PDO::FETCH_ASSOC)){
-                            echo "
+                        try{
+                            $query1 = $db->query("SELECT id,title,description,contact FROM jobs");
+                            while($query2 = $query1->fetch(PDO::FETCH_ASSOC)){
+                                echo "
                                         <tbody>
                                         <tr>
                                             <td align=\"center\">
@@ -176,7 +181,8 @@ $query1 = $db->query("SELECT id,title,description,contact FROM jobs");
                                         </tr>
                                         </tbody>
                                     ";
-                        }
+                            }
+                        }catch(Exception $e){}
                         ?>
                     </table>
 
@@ -286,5 +292,9 @@ $query1 = $db->query("SELECT id,title,description,contact FROM jobs");
 <script type="text/javascript" src="inc/js/scripts.js"></script>
 
 </body>
+<?php
+} else {
+    echo 'You are not authorized to access this page, please login.';
+}?>
 
 </html>
