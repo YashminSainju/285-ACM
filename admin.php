@@ -165,11 +165,22 @@ if(login_check($db) == true) {
                         </tr>
                         </thead>
                         <?php
+                        $start=0;
+                        $limit=5;
+
                         try{
+                        if(isset($_GET['id']))
+                        {
+                            $id=$_GET['id'];
+                            $start=($id-1)*$limit;
+                        }
+                        else{
+                            $id = 1;
+                        }
                             $query1 = $db->query("SELECT id,title,description,contact FROM jobs");
                             while($query2 = $query1->fetch(PDO::FETCH_ASSOC)){
                                 echo "
-                                        <tbody>
+                                    <tbody>
                                         <tr>
                                             <td align=\"center\">
                                                 <a href = 'inc/jobs/edit.php?id=".$query2['id']."'class=\"btn btn-default\"><em class=\"fa fa-pencil\"></em></a>
@@ -179,29 +190,44 @@ if(login_check($db) == true) {
                                             <td>".$query2['description']."</td>
                                             <td>".$query2['contact']."</td>
                                         </tr>
-                                        </tbody>
-                                    ";
+                                    </tbody>
+                                ";
                             }
-                        }catch(Exception $e){}
+                            $rows=$query1->rowCount();
+                            $total=ceil($rows/$limit);
                         ?>
                     </table>
 
                 </div>
                 <div class="panel-footer">
                     <div class="row">
-                        <div class="col col-xs-4">Page 1 of 5
+                        <div class="col col-xs-4">
                         </div>
                         <div class="col col-xs-8">
                             <ul class="pagination hidden-xs pull-right">
-                                <li><a href="#">1</a></li>
-                                <li><a href="#">2</a></li>
-                                <li><a href="#">3</a></li>
-                                <li><a href="#">4</a></li>
-                                <li><a href="#">5</a></li>
+                                <?php
+                                for($i=1;$i<=$total;$i++)
+                                {
+                                    if($i==$id) { echo "<li class='selected'><a>".$i."</a></li>"; }
+
+                                    else { echo "<li><a ui-sref='admin/id=".$i.">".$i."</a></li>"; }
+                                }
+                                ?>
+
                             </ul>
                             <ul class="pagination visible-xs pull-right">
                                 <li><a href="#">«</a></li>
-                                <li><a href="#">»</a></li>
+                                <?php
+                                if($id>1)
+                                {
+                                    echo "<a ui-sref='admin/id=".($id-1)." class='button'>«</a>";
+                                }
+                                if($id!=$total)
+                                {
+                                    echo "<a ui-sref='admin/id=".($id+1)." class='button'>»</a>";
+                                }
+                                }catch(Exception $e){}
+                                ?>
                             </ul>
                         </div>
                     </div>
