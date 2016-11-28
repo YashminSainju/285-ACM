@@ -1,8 +1,6 @@
-CREATE TABLE `test`.`Jobs` 
-  ( `Serial` INT NOT NULL AUTO_INCREMENT ,
-  `JobTitle` TINYTEXT NOT NULL , 
-  `JobDescription` TINYTEXT NOT NULL , 
-  `JobContact` VARCHAR(50) NOT NULL , 
-  `PostedBy` VARCHAR(50) NOT NULL , 
-  `Time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP , PRIMARY KEY (`Serial`)) 
-  ENGINE = InnoDB;
+CREATE TABLE `acmsite`.`jobs` ( 
+    `id` INT NOT NULL AUTO_INCREMENT , 
+    `title` TINYTEXT NOT NULL , 
+    `description` TINYTEXT NOT NULL , 
+    `contact` VARCHAR(100) NOT NULL , PRIMARY KEY (`id`)) 
+    ENGINE = InnoDB;
