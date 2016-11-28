@@ -22,6 +22,36 @@
 	 <!-- Bootstrap core CSS 
     <link href="../../dist/css/bootstrap.min.css" rel="stylesheet">-->
 	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" />
+    <style>
+        .slideanim {visibility:hidden;}
+        .slide {
+            animation-name: slide;
+            -webkit-animation-name: slide;
+            animation-duration: 1s;
+            -webkit-animation-duration: 1s;
+            visibility: visible;
+        }
+        @keyframes slide {
+            0% {
+                opacity: 0;
+                transform: translateY(70%);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0%);
+            }
+        }
+        @-webkit-keyframes slide {
+            0% {
+                opacity: 0;
+                -webkit-transform: translateY(70%);
+            }
+            100% {
+                opacity: 1;
+                -webkit-transform: translateY(0%);
+            }
+        }
+    </style>
      
 	
 	 <!-- JS (load angular, ui-router, and our custom js file) -->
@@ -44,7 +74,7 @@
 	
 </head>
 
-<body>
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
 <?php
         if (isset($_GET['error'])) {
             echo '<p class="error">Error Logging In!</p>';
@@ -54,7 +84,7 @@
     <div>
         <nav class="navbar navbar-inverse navigation-clean-button">
             <div class="container">
-                <div class="navbar-header"><a class="navbar-brand navbar-link" ui-sref="#">ACM </a>
+                <div class="navbar-header"><a class="navbar-brand navbar-link" href="#myPage">ACM </a>
                     <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
                 </div>
                 <div class="collapse navbar-collapse" id="navcol-1">
@@ -95,7 +125,7 @@
         </nav>
     </div>
     
-    <div class="container"> <!-- angular insertion -->
+    <div class="container-fluid"> <!-- angular insertion -->
 		
 		<!-- THIS IS WHERE WE WILL INJECT OUR CONTENT ============================== -->
 			<div ui-view></div>
