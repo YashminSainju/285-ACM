@@ -16,7 +16,7 @@ if (isset($_POST['email'], $_POST['p'])) {
 
     if (login($email, $password, $db) == true) {
         // Login success
-        header('Location: ../protected_page.php');
+        header('Location: ../index.php');
     } else {
         // Login failed
         header('Location: ../index.php?error=1');
