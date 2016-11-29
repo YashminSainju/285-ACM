@@ -22,9 +22,9 @@ if (login_check($db) == true) {
     <!-- Bootstrap core CSS
    <link href="../../dist/css/bootstrap.min.css" rel="stylesheet">-->
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" />
-    <style>
-        body{
-            font-family: Montserrat, sans-serif;
+    <!-- body{<style>
+       
+            
             font-size: 12px !important;
             line-height: 1.42857143 !important;
             letter-spacing: 4px;
@@ -38,7 +38,7 @@ if (login_check($db) == true) {
             line-height: 1.42857143 !important;
             letter-spacing: 4px;
             border-radius: 0;
-            font-family: Montserrat, sans-serif;
+            
             font-weight: bold;
         }
         .navbar li a, .navbar .navbar-brand {
@@ -75,8 +75,15 @@ if (login_check($db) == true) {
                 opacity: 1;
                 -webkit-transform: translateY(0%);
             }
-        }
-    </style>
+		.element {
+			position: relative;
+			top: 50%;
+			transform: translateY(-50%,-50%);
+			
+			
+		}
+        
+    </style> -->
 
 
     <!-- JS (load angular, ui-router, and our custom js file) -->
@@ -118,7 +125,8 @@ if (isset($_GET['error'])) {
                     <li ><a ui-sref="home">Home </a></li>
                     <li ><a href="https://www.acm.org">About </a></li>
                     <li ><a ui-sref="calendar">Calendar </a></li>
-                    <li ><a ui-sref="slugo">SLUGO </a></li>
+                    <li ><a ui-sref="events">Events </a></li>
+					<li ><a ui-sref="gallery">Gallery </a></li>
                     <li ><a ui-sref="jobs">Job Offers </a></li>
                     <li ><a ui-sref="admin">Administrators </a></li>
                     <li>
@@ -136,21 +144,79 @@ if (isset($_GET['error'])) {
                                 <div class = 'form-group'><label for='password'>Password </label>
                                     <input type='password' name='password' id='password' style='color: #000; font-size: 15px;' placeholder='Password' class='form-control'/>
                                 </div>
-                                <input type='button' class='btn btn-default' style ='color: #333;background-color: #000; border-color: #ccc;' value='Login' onclick='formhash(this.form, this.form.password);' />
-                                <a href='register.php'class = 'btn btn-default' style ='color: #333;background-color: #000;border-color: #ccc;'>register</a>
+                                <input type='button' class='btn btn-info btn-lg' value='Login' onclick='formhash(this.form, this.form.password);' />
+                                <button type='button' class='btn btn-info btn-lg' data-toggle='modal' data-target='#myModal'> Register</button>
+                                
 
 
                             </form>";
                         }
                         ?>
-                    </li>
+                        </li>
+						
+					
+					
                 </ul>
                 <!--<p class="navbar-text navbar-right actions"><a class="navbar-link login" ui-sref="#"><span class="glyphicon glyphicon-log-in"></span> Log In</a>-->
 
-                </p>
+                <!--</p>-->
             </div>
         </div>
     </nav>
+	<!-- modal-->
+						<div id="myModal" class="modal fade" role="dialog" style=" width:100%; position: absolute; left: 30%;top: 40%; transform: translate(-50%, -50%); margin-left: -150px; margin-top: -150px; ">
+						<?php
+						/**
+						* Created by PhpStorm.
+						* User: Yashmin
+						* Date: 11/27/2016
+						* Time: 7:19 PM
+						*/
+						include_once 'inc/register.inc.php';
+						include_once 'inc/functions.php';
+						?> <?php
+						if (!empty($error_msg)) {
+						echo $error_msg;
+						}
+						?>
+						  <div class="modal-dialog"  >
+						
+						<div class="modal-content" >
+						  <div class="modal-header">
+						   <button type="button" class="close" data-dismiss="modal"> &times;</button>
+						   <h4 class="modal-title" style="color:black"> Register Here</h4>
+						 </div>
+						 <div class="modal-body" style="color:black; ">
+						
+						 <ul style="color:black">
+						<li><b>Usernames:</b> No special characters</li>
+						<li>Must have a valid email format</li>
+						<li><b>Passwords:</b> At least 6 characters long</li>
+						<li><b>Passwords:</b>
+							<ul>
+						<li> < one uppercase letter</li>
+						<li> < one lowercase letter</li>
+						<li> < one number</li>
+						</ul>
+						</li>
+						<li>Passwords must match exactly</li>
+						</ul>
+						<form style="color:black" action="<?php echo esc_url($_SERVER['REQUEST_URI']); ?>" method="post" name="registration_form">
+						<b>Username:</b> <input type='text' name='username' id='username' /><br>
+						<b>Email:</b> <input type="text" name="email" id="email" /><br>
+						<b>Password:</b> <input type="password" name="password" id="password"/><br>
+						<b>Confirm password:</b> <input type="password" name="confirmpwd" id="confirmpwd" /><br>
+						<input type="button"  value="Register" onclick="return regformhash(this.form,this.form.username, this.form.email, this.form.password,this.form.confirmpwd);" />
+						</form>
+						<p style="color:black">Return to the <a href="index.php" style="color:#5bc0de">login page</a>.</p>
+						</style>
+						 </div>
+						<div class="modal-footer">
+						  <button type="button" class="btn btn-default" data-dismiss="modal" style="color:black">Close</button>
+						  </div>
+						 </div>
+						</div>
+						</div>
 </div>
 
 <div class="container-fluid"> <!-- angular insertion -->

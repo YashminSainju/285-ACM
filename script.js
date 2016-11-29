@@ -18,9 +18,13 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
 			templateUrl:'pages/calendar.html'
 		})
 	
-		.state('slugo', {
-			url: '/slugo',
-			templateUrl:'pages/slugo.html'
+		.state('events', {
+			url: '/events',
+			templateUrl:'pages/events.html'
+		})
+		.state('gallery', {
+			url: '/gallery',
+			templateUrl:'pages/gallery.html'
 		})
 		.state('jobs', {
 			url: '/jobs',
