@@ -13,7 +13,7 @@ if (login_check($db) == true) {
 ?>
 
 <!DOCTYPE html>
-<html lang="en"  ng-app="routerApp" xmlns="http://www.w3.org/1999/html">
+<html lang="en"  ng-app="routerApp">
 
 <head>
     <meta charset="utf-8">
@@ -22,9 +22,9 @@ if (login_check($db) == true) {
     <!-- Bootstrap core CSS
    <link href="../../dist/css/bootstrap.min.css" rel="stylesheet">-->
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" />
-    <style>
-        body{
-            font-family: Montserrat, sans-serif;
+    <!-- body{<style>
+       
+            
             font-size: 12px !important;
             line-height: 1.42857143 !important;
             letter-spacing: 4px;
@@ -38,7 +38,7 @@ if (login_check($db) == true) {
             line-height: 1.42857143 !important;
             letter-spacing: 4px;
             border-radius: 0;
-            font-family: Montserrat, sans-serif;
+            
             font-weight: bold;
         }
         .navbar li a, .navbar .navbar-brand {
@@ -75,39 +75,23 @@ if (login_check($db) == true) {
                 opacity: 1;
                 -webkit-transform: translateY(0%);
             }
-        }
-    </style>
-    <style>
-        .modal {
-        }
-        .vertical-alignment-helper {
-            display:table;
-            height: 100%;
-            width: 100%;
-            pointer-events:none;
-        }
-        .vertical-align-center {
-            /* To center vertically */
-            display: table-cell;
-            vertical-align: middle;
-            pointer-events:none;
-        }
-        .modal-content {
-            /* Bootstrap sets the size of the modal in the modal-dialog class, we need to inherit it */
-            width:inherit;
-            height:inherit;
-            /* To center horizontally */
-            margin: 0 auto;
-            pointer-events:all;
-        }
-    </style>
+		.element {
+			position: relative;
+			top: 50%;
+			transform: translateY(-50%,-50%);
+			
+			
+		}
+        
+    </style> -->
+
 
     <!-- JS (load angular, ui-router, and our custom js file) -->
     <script src="http://code.angularjs.org/1.2.13/angular.js"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.8/angular-ui-router.min.js"></script>
     <script src="script.js"></script>
 
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug 
     <link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">-->
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -302,18 +286,6 @@ if (isset($_GET['error'])) {
         });
     })
 </script>
-<script src="resources/js/angular.min.js"></script>
-<script type="text/javascript" src="inc/js/scripts.js"></script>
-<script>
-    var app = angular.module('myApp', []);
-    app.controller('usersCtrl', function($scope, $http) {
-        // read products
-        $scope.getAll = function(){
-            $http.get("inc/read.php").success(function(response){
-                $scope.names = response.records;
-            });
-        }
-    });
 </body>
 
 </html>
