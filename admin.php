@@ -12,52 +12,6 @@ if(login_check($db) == true) {
 
 ?>
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/html">
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ACM Admin </title>
-    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
-    <link rel="stylesheet" href="assets/css/Contact-Form-Clean.css">
-    <link rel="stylesheet" href="assets/css/Features-Boxed.css">
-    <link rel="stylesheet" href="assets/css/MUSA_panel-table.css">
-    <link rel="stylesheet" href="assets/css/MUSA_panel-table1.css">
-    <link rel="stylesheet" href="assets/css/Navigation-Clean1.css">
-    <link rel="stylesheet" href="assets/css/Sidebar-Menu.css">
-    <link rel="stylesheet" href="assets/css/Sidebar-Menu1.css">
-    <link rel="stylesheet" href="assets/css/Social-Icons.css">
-    <link rel="stylesheet" href="assets/css/styles.css">
-    <!-- custom CSS -->
-    <style>
-        .modal {
-        }
-        .vertical-alignment-helper {
-            display:table;
-            height: 100%;
-            width: 100%;
-            pointer-events:none;
-        }
-        .vertical-align-center {
-            /* To center vertically */
-            display: table-cell;
-            vertical-align: middle;
-            pointer-events:none;
-        }
-        .modal-content {
-            /* Bootstrap sets the size of the modal in the modal-dialog class, we need to inherit it */
-            width:inherit;
-            height:inherit;
-            /* To center horizontally */
-            margin: 0 auto;
-            pointer-events:all;
-        }
-    </style>
-</head>
-
-<body>
 <div>
     <nav class="navbar navbar-default navigation-clean">
         <div class="container">
@@ -312,27 +266,6 @@ if(login_check($db) == true) {
     </div>
 </div>
 <!-- // Modal -->
-
-<script src="assets/js/jquery.min.js"></script>
-<script src="assets/bootstrap/js/bootstrap.min.js"></script>
-<script src="assets/js/Sidebar-Menu.js"></script>
-<script src="resources/js/angular.min.js"></script>
-<script type="text/javascript" src="inc/js/scripts.js"></script>
-<script>
-    var app = angular.module('myApp', []);
-    app.controller('usersCtrl', function($scope, $http) {
-        // read products
-        $scope.getAll = function(){
-            $http.get("inc/read.php").success(function(response){
-                $scope.names = response.records;
-            });
-        }
-    });
-</script>
-
-</body>
-
-</html>
 <?php
 } else {
     echo 'You are not authorized to access this page, please login.';
