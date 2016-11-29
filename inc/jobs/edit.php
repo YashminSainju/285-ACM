@@ -25,7 +25,7 @@ if(isset($_GET['id']))
         $stmt->bindParam(":description", $description);
         $stmt->bindParam(":contact", $contact);
         if ($stmt->execute()) {
-            header('location: ../../ui-sref="admin"');
+            header('location: ../../#/admin');
         }
     }
     $query1=$db->query("select * from jobs where id='$id'");
