@@ -5,9 +5,9 @@ include('../database.php');
 <html>
 <body>
 <?php
-if(isset($_GET['ID']))
+if(isset($_GET['id']))
 {
-    $ID=$_GET['ID'];
+    $id=$_GET['id'];
     if(isset($_POST['submit']))
     {
         $FirstName = trim(filter_input(INPUT_POST, "FirstName", FILTER_SANITIZE_STRING));
@@ -23,10 +23,10 @@ if(isset($_GET['ID']))
         $stmt->bindParam(":Payment", $Payment);
         $stmt->bindParam(":class", $class);
         if ($stmt->execute()) {
-            header('location: ../../admin.php');
+            header('location: ../../#/admin');
         }
     }
-    $query1=$db->query("select * from users where ID='$ID'");
+    $query1=$db->query("select * from users where ID='$id'");
     $query2=$query1->fetchAll();
     ?>
     <form method="post" action="">
