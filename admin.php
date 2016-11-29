@@ -45,6 +45,7 @@ if(login_check($db) == true) {
             display: table-cell;
             vertical-align: middle;
             pointer-events:none;
+            left:auto;
         }
         .modal-content {
             /* Bootstrap sets the size of the modal in the modal-dialog class, we need to inherit it */
