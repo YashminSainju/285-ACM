@@ -18,7 +18,7 @@ if(login_check($db) == true) {
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ACM Admin Page2</title>
+    <title>ACM Admin </title>
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
     <link rel="stylesheet" href="assets/css/Contact-Form-Clean.css">
@@ -45,7 +45,6 @@ if(login_check($db) == true) {
             display: table-cell;
             vertical-align: middle;
             pointer-events:none;
-            left:auto;
         }
         .modal-content {
             /* Bootstrap sets the size of the modal in the modal-dialog class, we need to inherit it */
@@ -96,7 +95,7 @@ if(login_check($db) == true) {
                             <h3 class="panel-title">Members</h3>
                         </div>
                         <div class="col col-xs-6 text-right">
-                            <button type="button" class="btn btn-sm btn-primary btn-create" data-toggle="modal" data-target="#add_new_record_modal">Create New</button>
+                            <input type="button" onclick="location.href='inc/members/useradd.php';" value="Create New"  class="btn btn-sm btn-primary btn-create" data-toggle="modal" />
                         </div>
                     </div>
                 </div>
@@ -314,7 +313,7 @@ if(login_check($db) == true) {
 </div>
 <!-- // Modal -->
 
-<script src="inc/js/jquery-3.1.1.min.js"></script>
+<script src="assets/js/jquery.min.js"></script>
 <script src="assets/bootstrap/js/bootstrap.min.js"></script>
 <script src="assets/js/Sidebar-Menu.js"></script>
 <script src="resources/js/angular.min.js"></script>
