@@ -13,7 +13,7 @@ if(login_check($db) == true) {
 ?>
 
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/html">
 
 <head>
     <meta charset="utf-8">
@@ -152,7 +152,7 @@ if(login_check($db) == true) {
                             <h3 class="panel-title">Jobs Offers</h3>
                         </div>
                         <div class="col col-xs-6 text-right">
-                            <input type="button" onclick="location.href='inc/jobs/add.php';" value="Create New"  class="btn btn-sm btn-primary btn-create" data-toggle="modal" />
+                                <input type="button" onclick="location.href='inc/jobs/add.php';"  class="btn btn-sm btn-primary btn-default" value = "Create New" data-toggle="modal"/>
                         </div>
                     </div>
                 </div>
