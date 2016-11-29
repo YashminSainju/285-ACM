@@ -12,7 +12,7 @@ if(isset($_GET['id']))
     $query1=$db->query("delete from jobs where id='$id'");
     if($query1)
     {
-        header('location: ../../admin.php');
+        header('location: ../../#/admin');
     }
 }
 ?>
