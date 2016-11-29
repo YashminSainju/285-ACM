@@ -11,7 +11,7 @@ include('../database.php');
         $title = trim(filter_input(INPUT_POST, "title", FILTER_SANITIZE_STRING));
         $description = trim(filter_input(INPUT_POST, "description", FILTER_SANITIZE_SPECIAL_CHARS));
         $contact = trim(filter_input(INPUT_POST, "contact", FILTER_SANITIZE_EMAIL));
-        $query = "INSERT into jobs VALUES ('',:title,:description,:contact)";
+        $query = "INSERT into jobs VALUES (NULL,:title,:description,:contact)";
         $stmt = $db->prepare($query);
         $stmt->bindParam(":title", $title);
         $stmt->bindParam(":description", $description);
