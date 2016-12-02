@@ -19,17 +19,18 @@ if(login_check($db) == true) {
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ACM Admin </title>
-    <link rel="stylesheet" href="inc/assets/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="inc/assets/fonts/font-awesome.min.css">
-    <link rel="stylesheet" href="inc/assets/css/Contact-Form-Clean.css">
-    <link rel="stylesheet" href="inc/assets/css/Features-Boxed.css">
-    <link rel="stylesheet" href="inc/assets/css/MUSA_panel-table.css">
-    <link rel="stylesheet" href="inc/assets/css/MUSA_panel-table1.css">
-    <link rel="stylesheet" href="inc/assets/css/Navigation-Clean1.css">
-    <link rel="stylesheet" href="inc/assets/css/Sidebar-Menu.css">
-    <link rel="stylesheet" href="inc/assets/css/Sidebar-Menu1.css">
-    <link rel="stylesheet" href="inc/assets/css/Social-Icons.css">
-    <link rel="stylesheet" href="inc/assets/css/styles.css">
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/css/Contact-Form-Clean.css">
+    <link rel="stylesheet" href="assets/css/Features-Boxed.css">
+    <link rel="stylesheet" href="assets/css/MUSA_panel-table.css">
+    <link rel="stylesheet" href="assets/css/MUSA_panel-table1.css">
+    <link rel="stylesheet" href="assets/css/Navigation-Clean1.css">
+    <link rel="stylesheet" href="assets/css/Sidebar-Menu.css">
+    <link rel="stylesheet" href="assets/css/Sidebar-Menu1.css">
+    <link rel="stylesheet" href="assets/css/Social-Icons.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+	<link rel="stylesheet" href="resources/css/style.css>
     <!-- custom CSS -->
     <style>
         .modal {
@@ -313,9 +314,9 @@ if(login_check($db) == true) {
 </div>
 <!-- // Modal -->
 
-<script src="inc/assets/js/jquery.min.js"></script>
-<script src="inc/assets/bootstrap/js/bootstrap.min.js"></script>
-<script src="inc/assets/js/Sidebar-Menu.js"></script>
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/bootstrap/js/bootstrap.min.js"></script>
+<script src="assets/js/Sidebar-Menu.js"></script>
 <script src="resources/js/angular.min.js"></script>
 <script type="text/javascript" src="inc/js/scripts.js"></script>
 <script>

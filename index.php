@@ -22,6 +22,7 @@ if (login_check($db) == true) {
     <!-- Bootstrap core CSS
    <link href="../../dist/css/bootstrap.min.css" rel="stylesheet">-->
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" />
+	
     <!-- body{<style>
        
             
@@ -85,6 +86,7 @@ if (login_check($db) == true) {
         
     </style> -->
 
+	
 
     <!-- JS (load angular, ui-router, and our custom js file) -->
     <script src="http://code.angularjs.org/1.2.13/angular.js"></script>
